@@ -1,10 +1,10 @@
 const express = require('express');
-const helpers = require('./recipes-model');
+const RecipeModel = require('./recipes-model');
 
 const router = express.Router();
 
-router.get('/recipes', (req, res, next) => {
-  helpers.getRecipes()
+router.get('/:recipe_id', (req, res, next) => {
+  RecipeModel.getRecipeById(req.params.recipe_id)
     .then(recipes => {
       res.status(200).json(recipes);
     })
